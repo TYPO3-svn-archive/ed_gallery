@@ -1,0 +1,60 @@
+{namespace e=Tx_EdGallery_ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="content">
+	<f:if condition="{rootCategory}">
+		<f:then>
+			<h1>{rootCategory.title}</h1>
+		</f:then>
+		<f:else>
+			<h1><f:translate key="gallery.header">[Gallery]</f:translate></h1>
+		</f:else>
+	</f:if>
+	<f:if condition="{hasResult}">
+		<f:then>	
+			<e:widget.paginate objects="{0: categories, 1:medias}" as="paginatedItems" configuration="{itemsPerPage: settings.itemsPerPage, pagerTemplate: 'EXT:ed_gallery/Resources/Private/Templates/Default/Gallery/Index/Pager.html', widgetIdentifier: 'pager'}">
+				<ul class="gallery">
+					<f:for each="{paginatedItems}" as="item">
+						<f:if condition="{item.dam}">
+							<f:then>
+								<li>
+									<div class="image">
+										<a href="{item.dam -> f:cObject(typoscriptObjectPath: 'plugin.tx_edgallery.markers.bigImage')}" title="{item.dam.title}" rel="shadowbox[damcat_{rootCategory.uid}]"><e:image src="{item.dam.filePath}{item.dam.fileName}" alt="{item.dam.title}" width="119c" height="102c" ext="jpg" /></a>
+										<h5>{item.dam.title}</h5>
+										<p class="date">{item.dam.dateMod -> f:format.date(format: '{f:translate(key: \'gallery.date.format\')}')}</p>
+										<f:format.html><f:format.crop maxCharacters="100" append="...">{item.dam.description}</f:format.crop></f:format.html>
+									</div>
+								</li>
+							</f:then>
+							<f:else>
+								<li class="group">
+									<div class="image">
+										<f:if condition="{item.firstMedia}">
+											<f:then>
+												<f:link.action action="index" controller="Gallery" arguments="{category: item}">
+													<e:image src="{item.firstMedia.dam.filePath}{item.firstMedia.dam.fileName}" alt="{item.title}" width="119c" height="102c" ext="jpg" />
+												</f:link.action>
+											</f:then>
+											<f:else>
+												<f:link.action action="index" controller="Gallery" arguments="{category: item}">
+													<img src="typo3conf/ext/ed_gallery/Resources/Public/Images/empty-category.png" width="119" height="102" alt="{item.title}" />
+												</f:link.action>
+											</f:else>
+										</f:if>
+										<h5>{item.title}</h5>
+										<p class="date">{item.tstamp -> f:format.date(format: '{f:translate(key: \'gallery.date.format\')}')}</p>
+										<f:format.html><f:format.crop maxCharacters="100" append="...">{item.description}</f:format.crop></f:format.html>
+									</div>
+								</li>
+							</f:else>
+						</f:if>
+					</f:for>
+				</ul>
+			</e:widget.paginate>
+		</f:then>
+		<f:else>
+			<p><f:translate key="gallery.noMediaFound">[No media found in this category. Please go back.]</f:translate></p>
+		</f:else>
+	</f:if>
+</f:section>

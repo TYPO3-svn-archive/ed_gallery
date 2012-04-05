@@ -1,0 +1,59 @@
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.general_settings</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.template>
+						<TCEforms>
+							<label>LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.general_settings.template</label>
+							<config>
+								<type>select</type>
+								<itemsProcFunc>Tx_EdGallery_Domain_Repository_TemplateRepository->findAllGalleryTemplates</itemsProcFunc>
+							    <maxitems>1</maxitems>
+							    <size>1</size>
+							    <onChange>reload</onChange>
+							    <selicon_cols>3</selicon_cols>
+							    <suppress_icons>ONLY_SELECTED</suppress_icons>
+							    <multiple>0</multiple>
+							</config>
+						</TCEforms>
+					</settings.template>	 				
+					<settings.rootCategory>
+						<TCEforms>
+							<displayCond>HIDE_L10N_SIBLINGS</displayCond>
+							<label>LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.rootCategory</label>
+							<config>
+								<type>select</type>
+					    		<form_type>user</form_type>
+					    		<userFunc><![CDATA[EXT:dam/lib/class.tx_dam_tcefunc.php:&tx_dam_tceFunc->getSingleField_selectTree]]></userFunc> 
+					    		<treeViewClass><![CDATA[EXT:dam/components/class.tx_dam_selectionCategory.php:&tx_dam_selectionCategory]]></treeViewClass>
+					    		<treeViewBrowseable type="integer">0</treeViewBrowseable>
+					    		<foreign_table>tx_dam_cat</foreign_table>
+					    		<autoSizeMax>20</autoSizeMax>
+					    		<size type="integer">10</size>
+					    		<minitems type="integer">1</minitems>
+					    		<maxitems type="integer">1</maxitems>
+					    		<default></default>
+					    	</config>
+						</TCEforms>
+					</settings.rootCategory>	 				
+					<settings.itemsPerPage>
+						<TCEforms>
+							<label>LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.itemsPerPage</label>
+							<config>
+								<type>input</type>
+								<size>2</size>
+								<eval>int,required</eval>
+								<default>12</default>
+							</config>
+						</TCEforms>
+					</settings.itemsPerPage>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

@@ -1,0 +1,43 @@
+		# Plugin configuration
+	plugin.tx_edgallery {
+		settings {
+				# maximum number of posts to display per page
+			itemsPerPage = 12
+			
+			templates {
+				gallery {
+					default {
+						name = LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.template.gallery.default
+						template = EXT:ed_gallery/Resources/Private/Templates/Default
+						thumbnail = EXT:ed_gallery/Resources/Public/Thumbnails/gallery.default.png
+					}
+				}
+			}			
+		}
+
+		features {
+			rewrittenPropertyMapper = 1
+		}
+
+		view {
+			templateRootPath = EXT:ed_gallery/Resources/Private/Templates/Default
+		}
+						
+		markers {
+			bigImage = COA
+			bigImage {
+				10 = TEXT
+				10 {
+					value < config.absRefPrefix
+					override < config.baseURL
+				}
+				
+				20 = IMG_RESOURCE
+				20.file {
+					import.field = fullPath
+					maxW = 980
+					ext = jpg
+				}
+			}
+		}		
+	}

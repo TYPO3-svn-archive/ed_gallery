@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the ed_gallery extension</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="gallery.header">Gallery</label>
+			<label index="gallery.date.format">d.m.Y</label>
+			<label index="gallery.noMediaFound">No media found in this category. Please go back.</label>
+			<label index="pager.back">Back</label>
+			<label index="pager.next">Next</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="gallery.header">Gallery</label>
+			<label index="gallery.date.format">d.m.Y</label>
+			<label index="gallery.noMediaFound">No media found in this category. Please go back.</label>
+			<label index="pager.back">Zurück</label>
+			<label index="pager.next">Weiter</label>
+		</languageKey>
+	</data>
+</T3locallang>

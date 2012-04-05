@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'ed_gallery'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="flexform.general_settings">General settings</label>
+			<label index="flexform.general_settings.template">Template:</label>
+			<label index="flexform.template.gallery.default">Default</label>
+			<label index="flexform.rootCategory">Root category:</label>
+			<label index="flexform.itemsPerPage">Max. number of items to display per page:</label>
+			<label index="tx_dam_cat.date_theader">Date</label>
+		</languageKey>
+	</data>
+</T3locallang>
