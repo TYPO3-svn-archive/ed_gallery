@@ -45,31 +45,31 @@ class Tx_EdGallery_Controller_GalleryController extends Tx_Extbase_MVC_Controlle
 	protected $mediaRepository;
 	
 	/**
-+	 * Dependency injection of the DAM Repository
+	 * Dependency injection of the DAM Repository
  	 *
 	 * @param Tx_EdDamcatsort_Domain_Repository_DamRepository $damRepository
  	 * @return void
--	 */
+	 */
 	public function injectDamRepository(Tx_EdDamcatsort_Domain_Repository_DamRepository $damRepository) {
 		$this->damRepository = $damRepository;
 	}
 
  	/**
-+	 * Dependency injection of the DAM Category Repository
+	 * Dependency injection of the DAM Category Repository
  	 *
 	 * @param Tx_EdDamcatsort_Domain_Repository_DamCategoryRepository $damCategoryRepository
  	 * @return void
--	 */
+	 */
 	public function injectDamCategoryRepository(Tx_EdDamcatsort_Domain_Repository_DamCategoryRepository $damCategoryRepository) {
 		$this->damCategoryRepository = $damCategoryRepository;
 	}
 
  	/**
-+	 * Dependency injection of the DAM media Repository
+	 * Dependency injection of the DAM media Repository
  	 *
 	 * @param Tx_EdDamcatsort_Domain_Repository_MediaRepository $mediaRepository
  	 * @return void
--	 */
+	 */
 	public function injectMediaRepository(Tx_EdDamcatsort_Domain_Repository_MediaRepository $mediaRepository) {
 		$this->mediaRepository = $mediaRepository;
 	}
