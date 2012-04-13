@@ -74,7 +74,7 @@ class Tx_EdGallery_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_Imag
 			'maxH' => $maxHeight,
 			'ext' => $ext
 		);
-		error_log(print_r($setup, 1));
+		
 		if (TYPO3_MODE === 'BE' && substr($src, 0, 3) === '../') {
 			$src = substr($src, 3);
 		}
