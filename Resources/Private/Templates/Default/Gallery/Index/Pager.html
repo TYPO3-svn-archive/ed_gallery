@@ -1,4 +1,4 @@
-{namespace e=Tx_EdGallery_ViewHelpers}
+{namespace h=Tx_ExtbaseHijax_ViewHelpers}
 
 <f:if condition="{configuration.insertAbove}">
 	<f:render section="paginator" arguments="{pagination: pagination}" />
@@ -13,18 +13,18 @@
 <f:section name="paginator">
 	<ul class="b-pager">
 			<f:for each="{pagination.pages}" as="page">
-				<e:if condition="{pagination.current} == ({page.number}+1)">
+				<h:extendedServerIf condition="{pagination.current} == ({page.number}+1)">
 					<li class="prev">
 						<f:if condition="{page.number} > 1">
 							<f:then>
-								<f:widget.link arguments="{currentPage: page.number}"><span class="bu-small"><f:translate key="pager.back">[Back]</f:translate></span></f:widget.link>
+								<h:widget.link arguments="{currentPage: page.number}"><span class="bu-small"><f:translate key="pager.back">[Back]</f:translate></span></h:widget.link>
 							</f:then>
 							<f:else>
-								<f:widget.link><span class="bu-small"><f:translate key="pager.back">[Back]</f:translate></span></f:widget.link>
+								<h:widget.link><span class="bu-small"><f:translate key="pager.back">[Back]</f:translate></span></h:widget.link>
 							</f:else>
 						</f:if>
 					</li>
-				</e:if>
+				</h:extendedServerIf>
 			</f:for>
 			<f:for each="{pagination.pages}" as="page">
 				<f:if condition="{page.isCurrent}">
@@ -34,32 +34,32 @@
 						</li>
 					</f:then>
 					<f:else>
-						<e:if condition="{page.number} < ({pagination.current}+4) && {page.number} > ({pagination.current}-4)">
+						<h:extendedServerIf condition="{page.number} < ({pagination.current}+4) && {page.number} > ({pagination.current}-4)">
 							<f:then>
 								<li>
 									<f:if condition="{page.number} > 1">
 										<f:then>
-											<f:widget.link arguments="{currentPage: page.number}">{page.number}</f:widget.link>
+											<h:widget.link arguments="{currentPage: page.number}">{page.number}</h:widget.link>
 										</f:then>
 										<f:else>
-											<f:widget.link>{page.number}</f:widget.link>
+											<h:widget.link>{page.number}</h:widget.link>
 										</f:else>
 									</f:if>
 								</li>
 							</f:then>
 							<f:else>
-								<e:if condition="{page.number} == ({pagination.current}+4) || {page.number} == ({pagination.current}-4)">
+								<h:extendedServerIf condition="{page.number} == ({pagination.current}+4) || {page.number} == ({pagination.current}-4)">
 									<li><a style="cursor:default" href="#" onclick="return false;">...</a></li>
-								</e:if>
+								</h:extendedServerIf>
 							</f:else>
-						</e:if>
+						</h:extendedServerIf>
 					</f:else>
 				</f:if>
 			</f:for>
 			<f:for each="{pagination.pages}" as="page">
-				<e:if condition="{pagination.current} == ({page.number}-1)">
-					<li class="prev"><f:widget.link arguments="{currentPage: '{page.number}'}"><span class="bu-small"><f:translate key="pager.next">[Next]</f:translate></span></f:widget.link></li>
-				</e:if>
+				<h:extendedServerIf condition="{pagination.current} == ({page.number}-1)">
+					<li class="prev"><h:widget.link arguments="{currentPage: '{page.number}'}"><span class="bu-small"><f:translate key="pager.next">[Next]</f:translate></span></h:widget.link></li>
+				</h:extendedServerIf>
 			</f:for>			
 	</ul>
 </f:section>

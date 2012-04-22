@@ -1,3 +1,4 @@
+{namespace h=Tx_ExtbaseHijax_ViewHelpers}
 {namespace e=Tx_EdGallery_ViewHelpers}
 
 <f:layout name="Default" />
@@ -13,7 +14,7 @@
 	</f:if>
 	<f:if condition="{hasResult}">
 		<f:then>	
-			<e:widget.paginate objects="{0: categories, 1:medias}" as="paginatedItems" configuration="{itemsPerPage: settings.itemsPerPage, pagerTemplate: 'EXT:ed_gallery/Resources/Private/Templates/Default/Gallery/Index/Pager.html', widgetIdentifier: 'pager'}">
+			<h:widget.paginate objects="{0: categories, 1:medias}" as="paginatedItems" configuration="{itemsPerPage: settings.itemsPerPage, pagerTemplate: 'EXT:ed_gallery/Resources/Private/Templates/Default/Gallery/Index/Pager.html', widgetIdentifier: 'pager'}">
 				<ul class="gallery">
 					<f:for each="{paginatedItems}" as="item">
 						<f:if condition="{item.dam}">
@@ -51,7 +52,7 @@
 						</f:if>
 					</f:for>
 				</ul>
-			</e:widget.paginate>
+			</h:widget.paginate>
 		</f:then>
 		<f:else>
 			<p><f:translate key="gallery.noMediaFound">[No media found in this category. Please go back.]</f:translate></p>
