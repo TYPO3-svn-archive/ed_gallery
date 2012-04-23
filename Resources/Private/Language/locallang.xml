@@ -9,8 +9,6 @@
 			<label index="gallery.header">Gallery</label>
 			<label index="gallery.date.format">d.m.Y</label>
 			<label index="gallery.noMediaFound">No media found in this category. Please go back.</label>
-			<label index="pager.back">Back</label>
-			<label index="pager.next">Next</label>
 			<label index="items.count">%s images</label>
 			<label index="item.count">%s image</label>
 			<label index="no_items">No images</label>
@@ -19,8 +17,6 @@
 			<label index="gallery.header">Gallery</label>
 			<label index="gallery.date.format">d.m.Y</label>
 			<label index="gallery.noMediaFound">No media found in this category. Please go back.</label>
-			<label index="pager.back">Zurück</label>
-			<label index="pager.next">Weiter</label>
 			<label index="items.count">%s Bilder</label>
 			<label index="item.count">%s Bild</label>
 			<label index="no_items">Keine Bilder</label>
