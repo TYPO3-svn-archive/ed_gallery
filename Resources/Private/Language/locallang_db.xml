@@ -10,7 +10,7 @@
 			<label index="flexform.general_settings.template">Template:</label>
 			<label index="flexform.template.gallery.default">Default</label>
 			<label index="flexform.rootCategory">Root category:</label>
-			<label index="flexform.itemsPerPage">Max. number of items to display per page:</label>
+			<label index="flexform.itemsPerPage">Max. number of items to display per page (if pagination is available in the template):</label>
 			<label index="tx_dam_cat.date_theader">Date</label>
 		</languageKey>
 	</data>
