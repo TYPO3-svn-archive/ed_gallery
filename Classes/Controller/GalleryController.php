@@ -45,6 +45,11 @@ class Tx_EdGallery_Controller_GalleryController extends Tx_Extbase_MVC_Controlle
 	protected $mediaRepository;
 	
 	/**
+	 * @var Tx_ExtbaseHijax_Tracking_Manager
+	 */
+	protected $trackingManager;
+	
+	/**
 	 * Dependency injection of the DAM Repository
  	 *
 	 * @param Tx_EdDamcatsort_Domain_Repository_DamRepository $damRepository
@@ -75,20 +80,33 @@ class Tx_EdGallery_Controller_GalleryController extends Tx_Extbase_MVC_Controlle
 	}
 
 	/**
+	 * Injects the tracking manager
+	 *
+	 * @param Tx_ExtbaseHijax_Tracking_Manager $trackingManager
+	 * @return void
+	 */
+	public function injectTrackingManager(Tx_ExtbaseHijax_Tracking_Manager $trackingManager) {
+		$this->trackingManager = $trackingManager;
+	}	
+	
+	/**
 	 * Index action for this controller. Displays a list of categories and medias.
 	 *
 	 * @return void
 	 */
 	public function indexAction(Tx_EdDamcatsort_Domain_Model_DamCategory $category = null) {
+			// tracking repositories in order to allow automatic cache clearing
+		$this->trackingManager->trackRepositoryOnPage($this->damCategoryRepository);
+		$this->trackingManager->trackRepositoryOnPage($this->mediaRepository);
+		$this->trackingManager->trackRepositoryOnPage($this->damRepository);
+		
 		if (empty($category)) {
 			$category = $this->damCategoryRepository->findByUid($this->settings['rootCategory']);
 		}
 		
 		$categories = $this->damCategoryRepository->findByParentId($category); /* @var $categories Tx_Extbase_Persistence_QueryResult */
-		//$categories->getQuery()->getQuerySettings()->setStoragePageIds(array($category->getPid()));
 		
 		$medias = $this->mediaRepository->findByCategory($category); /* @var $medias Tx_Extbase_Persistence_QueryResult */
-		//$medias->getQuery()->getQuerySettings()->setStoragePageIds(array($category->getPid()));
 		
 		$this->view->assign('rootCategory', $category);
 		$this->view->assign('categories', $categories);
