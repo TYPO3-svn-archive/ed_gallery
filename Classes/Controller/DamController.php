@@ -27,16 +27,21 @@
 /**
  * The gallery controller 
  */
-class Tx_EdGallery_Controller_GalleryController extends Tx_EdGallery_Controller_AbstractController {
+class Tx_EdGallery_Controller_DamController extends Tx_EdGallery_Controller_AbstractController {
 	
 	/**
 	 * Index action for this controller. Displays a list of categories and medias.
 	 *
-	 * @param Tx_EdDamcatsort_Domain_Model_AbstractDamCategory $category
 	 * @return void
 	 */
-	public function indexAction(Tx_EdDamcatsort_Domain_Model_AbstractDamCategory $category = null) {
-		$this->forward('show', 'DamCategory');
+	public function showAction(Tx_EdDamcatsort_Domain_Model_AbstractDam $dam = null) {
+			// tracking repositories in order to allow automatic cache clearing
+		$this->trackingManager->trackObjectOnPage($dam);
+		
+		$this->view->assign('media', $dam);
+
+		$data = $this->request->getContentObjectData();
+		$this->view->assign('data', $data);
 	}
 }
 

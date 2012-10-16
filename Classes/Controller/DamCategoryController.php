@@ -27,16 +27,35 @@
 /**
  * The gallery controller 
  */
-class Tx_EdGallery_Controller_GalleryController extends Tx_EdGallery_Controller_AbstractController {
-	
+class Tx_EdGallery_Controller_DamCategoryController extends Tx_EdGallery_Controller_AbstractController {
+
 	/**
-	 * Index action for this controller. Displays a list of categories and medias.
+	 * Category show action
 	 *
 	 * @param Tx_EdDamcatsort_Domain_Model_AbstractDamCategory $category
 	 * @return void
 	 */
-	public function indexAction(Tx_EdDamcatsort_Domain_Model_AbstractDamCategory $category = null) {
-		$this->forward('show', 'DamCategory');
+	public function showAction(Tx_EdDamcatsort_Domain_Model_AbstractDamCategory $category = null) {
+			// tracking repositories in order to allow automatic cache clearing
+		$this->trackingManager->trackRepositoryOnPage($this->damCategoryRepository);
+		$this->trackingManager->trackRepositoryOnPage($this->mediaRepository);
+		$this->trackingManager->trackRepositoryOnPage($this->damRepository);
+		
+		if (empty($category)) {
+			$category = $this->damCategoryRepository->findByUid($this->settings['rootCategory']);
+		}
+		
+		$categories = $this->damCategoryRepository->findByParentId($category); /* @var $categories Tx_Extbase_Persistence_QueryResult */
+		
+		$medias = $this->mediaRepository->findByCategory($category); /* @var $medias Tx_Extbase_Persistence_QueryResult */
+		
+		$this->view->assign('rootCategory', $category);
+		$this->view->assign('categories', $categories);
+		$this->view->assign('medias', $medias);
+		$this->view->assign('hasResult', count($categories)>0 || count($medias)>0);
+		
+		$data = $this->request->getContentObjectData();
+		$this->view->assign('data', $data);
 	}
 }
 
