@@ -9,7 +9,7 @@ $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,// The extension name (in UpperCamelCase) or the extension key (in lower_underscore)
 	'Pi1', // A unique name of the plugin in UpperCamelCase
-	'DAM Gallery' // A title shown in the backend dropdown field
+	'Media' // A title shown in the backend dropdown field
 );
 
 $pluginSignature = strtolower($extensionName) . '_pi1';
