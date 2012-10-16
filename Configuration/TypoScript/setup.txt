@@ -3,16 +3,33 @@
 		settings {
 				# maximum number of posts to display per page
 			itemsPerPage = 12
-			
+
 			templates {
-				gallery {
-					default {
-						name = LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.template.gallery.default
-						template = EXT:ed_gallery/Resources/Private/Templates/Default
-						thumbnail = EXT:ed_gallery/Resources/Public/Thumbnails/gallery.default.png
-					}
+				default {
+					name = LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.template.gallery.default
+					template = EXT:ed_gallery/Resources/Private/Templates/Default
+					thumbnail = EXT:ed_gallery/Resources/Public/Thumbnails/gallery.default.png
+					switchableControllerActions = ;Dam->show;Dam->list
 				}
-			}			
+			}
+
+			switchableControllerActions {
+				1 {
+					value = DamCategory->show
+					name = LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.switchableControllerActions.mediaCategory
+					availableTemplates = default
+				}
+				2 {
+					value = Dam->list
+					name = LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.switchableControllerActions.medias
+					availableTemplates = default
+				}
+				3 {
+					value = Dam->show
+					name = LLL:EXT:ed_gallery/Resources/Private/Language/locallang_db.xml:flexform.switchableControllerActions.media
+					availableTemplates = default
+				}
+			}
 		}
 
 		features {
@@ -34,7 +51,7 @@
 				
 				20 = IMG_RESOURCE
 				20.file {
-					import.field = fullPath
+					import.current = 1
 					maxW = 980
 					ext = jpg
 				}

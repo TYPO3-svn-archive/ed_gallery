@@ -28,17 +28,48 @@
  * The gallery controller 
  */
 class Tx_EdGallery_Controller_DamController extends Tx_EdGallery_Controller_AbstractController {
-	
+
 	/**
-	 * Index action for this controller. Displays a list of categories and medias.
+	 * Show action
 	 *
+	 * @param Tx_EdDamcatsort_Domain_Model_AbstractDam $dam
 	 * @return void
 	 */
 	public function showAction(Tx_EdDamcatsort_Domain_Model_AbstractDam $dam = null) {
-			// tracking repositories in order to allow automatic cache clearing
+		if (!$dam) {
+			$dam = $this->damRepository->findByUid($this->settings['media']);
+		}
+
+		// tracking media
 		$this->trackingManager->trackObjectOnPage($dam);
-		
+
 		$this->view->assign('media', $dam);
+
+		$data = $this->request->getContentObjectData();
+		$this->view->assign('data', $data);
+	}
+
+	/**
+	 * List action
+	 *
+	 * @param string $uids
+	 * @return void
+	 */
+	public function listAction($uids = '') {
+		if (!$uids) {
+			$uids = $this->settings['medias'];
+		}
+
+		/* @var $medias ArrayObject */
+		$medias = t3lib_div::makeInstance('ArrayObject');
+		foreach (t3lib_div::trimExplode(',', $uids, true) as $uid) {
+			$media = $this->damRepository->findByUid($uid);
+			if ($media) {
+				$medias->append($media);
+				$this->trackingManager->trackObjectOnPage($media);
+			}
+		}
+		$this->view->assign('medias', $medias);
 
 		$data = $this->request->getContentObjectData();
 		$this->view->assign('data', $data);

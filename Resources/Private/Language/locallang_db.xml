@@ -6,11 +6,17 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="flexform.general_settings">General settings</label>
-			<label index="flexform.general_settings.template">Template:</label>
-			<label index="flexform.template.gallery.default">Default</label>
-			<label index="flexform.rootCategory">Root category:</label>
-			<label index="flexform.itemsPerPage">Max. number of items to display per page (if pagination is available in the template):</label>
+            <label index="flexform.general_settings">General settings</label>
+            <label index="flexform.switchableControllerActions">What to show:</label>
+            <label index="flexform.switchableControllerActions.media">Media</label>
+            <label index="flexform.switchableControllerActions.medias">Medias</label>
+            <label index="flexform.switchableControllerActions.mediaCategory">Media category</label>
+            <label index="flexform.template">Template:</label>
+            <label index="flexform.template.gallery.default">Default</label>
+            <label index="flexform.rootCategory">Root category:</label>
+            <label index="flexform.medias">Medias:</label>
+            <label index="flexform.media">Media:</label>
+            <label index="flexform.itemsPerPage">Max. number of items to display per page (if pagination is available in the template):</label>
 			<label index="tx_dam_cat.date_theader">Date</label>
 		</languageKey>
 	</data>
