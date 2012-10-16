@@ -37,13 +37,56 @@ class Tx_EdGallery_Controller_DamController extends Tx_EdGallery_Controller_Abst
 	 */
 	public function showAction(Tx_EdDamcatsort_Domain_Model_AbstractDam $dam = null) {
 		if (!$dam) {
-			$dam = $this->damRepository->findByUid($this->settings['media']);
+			$dam = $this->damRepository->findByUid($this->getSetting('media'));
 		}
 
 		// tracking media
 		$this->trackingManager->trackObjectOnPage($dam);
 
 		$this->view->assign('media', $dam);
+
+		$data = $this->request->getContentObjectData();
+		$this->view->assign('data', $data);
+	}
+
+	/**
+	 * Show action
+	 *
+	 * @param Tx_EdDamcatsort_Domain_Model_AbstractDam $dam
+	 * @return void
+	 */
+	public function relatedListAction(Tx_EdDamcatsort_Domain_Model_AbstractDam $dam = null) {
+
+			// tracking media
+		$this->trackingManager->trackRepositoryOnPage($this->damRepository);
+		$this->trackingManager->trackRepositoryOnPage($this->damCategoryRepository);
+
+		if (!$dam) {
+			$dam = $this->damRepository->findByUid($this->getSetting('media'));
+		}
+
+		$this->view->assign('media', $dam);
+
+		if ($dam) {
+			/* @var $medias ArrayObject */
+			$medias = t3lib_div::makeInstance('ArrayObject');
+			$mediaUids = array();
+			foreach ($dam->getCategories() as $category) {
+				/* @var $category Tx_EdDamcatsort_Domain_Model_DamCategory */
+				$sortedMedias = $category->getMedias();
+				foreach ($sortedMedias as $sortedMedia) {
+					/* @var $sortedMedia Tx_EdDamcatsort_Domain_Model_Media */
+					if ($sortedMedia && $sortedMedia->getDam()) {
+						if ($dam->getUid() != $sortedMedia->getDam()->getUid() && !in_array($sortedMedia->getDam()->getUid(), $mediaUids)) {
+							$mediaUids[] = $sortedMedia->getDam()->getUid();
+							$medias->append($sortedMedia->getDam());
+						}
+					}
+				}
+			}
+			$this->view->assign('medias', $medias);
+		}
+
 
 		$data = $this->request->getContentObjectData();
 		$this->view->assign('data', $data);
@@ -57,7 +100,7 @@ class Tx_EdGallery_Controller_DamController extends Tx_EdGallery_Controller_Abst
 	 */
 	public function listAction($uids = '') {
 		if (!$uids) {
-			$uids = $this->settings['medias'];
+			$uids = $this->getSetting('medias');
 		}
 
 		/* @var $medias ArrayObject */

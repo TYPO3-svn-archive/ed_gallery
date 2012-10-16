@@ -48,7 +48,25 @@ abstract class Tx_EdGallery_Controller_AbstractController extends Tx_Extbase_MVC
 	 * @var Tx_ExtbaseHijax_Tracking_Manager
 	 */
 	protected $trackingManager;
-	
+
+	/**
+	 * @var array
+	 */
+	protected $tsSettings;
+
+	/**
+	 * @var Tx_Extbase_Service_TypoScriptService
+	 */
+	protected $typoScriptService;
+
+	/**
+	 * @param Tx_Extbase_Service_TypoScriptService $typoScriptService
+	 * @return void
+	 */
+	public function injectTypoScriptService(Tx_Extbase_Service_TypoScriptService $typoScriptService) {
+		$this->typoScriptService = $typoScriptService;
+	}
+
 	/**
 	 * Dependency injection of the DAM Repository
  	 *
@@ -103,7 +121,22 @@ abstract class Tx_EdGallery_Controller_AbstractController extends Tx_Extbase_MVC
 				$view->setTemplateRootPath($templateRootPath);
 			}
 		}
-	}	
+	}
+
+	/**
+	 * @param string $setting
+	 * @return string
+	 */
+	protected function getSetting($setting) {
+		if (is_array($this->settings[$setting])) {
+			if (!$this->tsSettings) {
+				$this->tsSettings = $this->typoScriptService->convertPlainArrayToTypoScriptArray($this->settings);
+			}
+			return $this->configurationManager->getContentObject()->stdWrap($this->tsSettings[$setting], $this->tsSettings[$setting.'.']);
+		} else {
+			return $this->settings[$setting];
+		}
+	}
 }
 
 ?>

@@ -13,7 +13,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array (							// An array holding the controller-action-combinations that are accessible
 		'Gallery' => 'index',       // The first controller and its first action will be the default
 		'DamCategory' => 'show',
-		'Dam' => 'show,list',
+		'Dam' => 'show,list,relatedList',
 	),
 	array(							// An array of non-cachable controller-action-combinations (they must already be enabled)
 	)

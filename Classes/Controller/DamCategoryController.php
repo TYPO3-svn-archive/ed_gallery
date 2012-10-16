@@ -42,7 +42,7 @@ class Tx_EdGallery_Controller_DamCategoryController extends Tx_EdGallery_Control
 		$this->trackingManager->trackRepositoryOnPage($this->damRepository);
 		
 		if (empty($category)) {
-			$category = $this->damCategoryRepository->findByUid($this->settings['rootCategory']);
+			$category = $this->damCategoryRepository->findByUid($this->getSetting('rootCategory'));
 		}
 		
 		$categories = $this->damCategoryRepository->findByParentId($category); /* @var $categories Tx_Extbase_Persistence_QueryResult */
