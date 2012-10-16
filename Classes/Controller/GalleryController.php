@@ -94,7 +94,7 @@ class Tx_EdGallery_Controller_GalleryController extends Tx_Extbase_MVC_Controlle
 	 *
 	 * @return void
 	 */
-	public function indexAction(Tx_EdDamcatsort_Domain_Model_DamCategory $category = null) {
+	public function indexAction(Tx_EdDamcatsort_Domain_Model_AbstractDamCategory $category = null) {
 			// tracking repositories in order to allow automatic cache clearing
 		$this->trackingManager->trackRepositoryOnPage($this->damCategoryRepository);
 		$this->trackingManager->trackRepositoryOnPage($this->mediaRepository);
