@@ -114,7 +114,7 @@ class Tx_EdGallery_Controller_DamController extends Tx_EdGallery_Controller_Abst
 		}
 		$this->view->assign('medias', $medias);
 
-		$data = $this->request->getContentObjectData();
+		$data = $this->configurationManager->getContentObject();
 		$this->view->assign('data', $data);
 	}
 }
