@@ -53,8 +53,8 @@ class Tx_EdGallery_Controller_DamCategoryController extends Tx_EdGallery_Control
 		$this->view->assign('categories', $categories);
 		$this->view->assign('medias', $medias);
 		$this->view->assign('hasResult', count($categories)>0 || count($medias)>0);
-		
-		$data = $this->request->getContentObjectData();
+
+		$data = $this->configurationManager->getContentObject();
 		$this->view->assign('data', $data);
 	}
 }
